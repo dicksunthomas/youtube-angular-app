@@ -6,6 +6,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {MatCardModule} from '@angular/material/card';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+
 
 @NgModule({
   declarations: [
@@ -17,7 +19,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     HttpClientModule,
     NgxSpinnerModule,
     MatCardModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    InfiniteScrollModule
   ],
   providers: [],
   bootstrap: [AppComponent]

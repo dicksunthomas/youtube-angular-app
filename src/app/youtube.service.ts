@@ -12,7 +12,14 @@ export class YoutubeService {
   constructor(public http: HttpClient) { }
 
   getVideosForChanel(): Observable<Object> {
-    let url = 'https://www.googleapis.com/youtube/v3/search?key=' + this.apiKey + '&order=date&part=snippet&type=video&maxResults=50&q=dog'
+    let url = 'https://www.googleapis.com/youtube/v3/search?key=' + this.apiKey + '&order=date&part=snippet&type=video&maxResults=48&q=dog'
+    return this.http.get(url)
+      .pipe(map((res) => {
+        return res;
+      }))
+  }
+  getVideosByPage(token): Observable<Object> {
+    let url = 'https://www.googleapis.com/youtube/v3/search?key=' + this.apiKey + '&order=date&part=snippet&type=video&maxResults=48&pageToken='+token+'&q=dog'
     return this.http.get(url)
       .pipe(map((res) => {
         return res;
