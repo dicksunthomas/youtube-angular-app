@@ -6,7 +6,22 @@
 <!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->
 <!-- * * * * * * * to get started with your project! * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
+<nav class="navbar is-dark">
+    <!-- logo -->
+    <div class="navbar-brand">
+      <a class="navbar-item">
+        <img src="assets/img/angular-logo.png">
+      </a>
+    </div>
+    <!-- menu -->
+    <div class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item" routerLink="">Home</a>
+        <a class="navbar-item" routerLink="contact">Contact</a>
+        <a class="navbar-item" routerLink="users">Users</a>
+      </div>
+    </div>
+  </nav>
 
 <!-- Toolbar -->
 <!-- Page Content -->
@@ -23,6 +38,10 @@
         <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple">
           <p style="font-size: 20px; color: white">Loading...</p>
         </ngx-spinner>
+        <div>Search
+          <input type="text" #search class="form-control" (keyup.enter)="click(search.value)">
+          <button type="button" (keyup.enter)="click(search.value)" class="btn btn-primary">Search</button>
+        </div>
         <div class="search-results" infiniteScroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="50"
           (scrolled)="onScroll(token.nextPageToken)" [scrollWindow]="true">
           <div fxLayout="row wrap" fxLayoutGap="20px" fxLayoutAlign="space-around center">

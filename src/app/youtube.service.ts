@@ -7,12 +7,12 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class YoutubeService {
-  apiKey : string = 'API_Key';
+  apiKey : string = 'AIzaSyDLU7WrMYHTGFuJpeYtlUrFs1GcSjYjKpA';
 
   constructor(public http: HttpClient) { }
 
-  getVideosForChanel(): Observable<Object> {
-    let url = 'https://www.googleapis.com/youtube/v3/search?key=' + this.apiKey + '&order=date&part=snippet&type=video&maxResults=48&q=dog'
+  getVideosForChanel(search:string): Observable<Object> {
+    let url = 'https://www.googleapis.com/youtube/v3/search?key=' + this.apiKey + '&order=date&part=snippet&type=video&maxResults=48&q=dog+'+search
     return this.http.get(url)
       .pipe(map((res) => {
         return res;
@@ -22,6 +22,14 @@ export class YoutubeService {
     let url = 'https://www.googleapis.com/youtube/v3/search?key=' + this.apiKey + '&order=date&part=snippet&type=video&maxResults=48&pageToken='+token+'&q=dog'
     return this.http.get(url)
       .pipe(map((res) => {
+        return res;
+      }))
+  }
+  getVideoById(id): Observable<object>{
+    let url = 'https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id='+id+'&key='+this.apiKey
+    return this.http.get(url)
+      .pipe(map((res) => {
+        console.log(res);
         return res;
       }))
   }

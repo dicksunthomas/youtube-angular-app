@@ -23,23 +23,11 @@ export class ResultsComponent implements OnInit {
   constructor(private spinner: NgxSpinnerService, private youTubeService: YoutubeService, private _route: Router, private data:DataService) { }
 
   ngOnInit() {
+    this.data.setData("Hi I am new");
     this.spinner.show()
     setTimeout(() => {
       this.spinner.hide()
     }, 3000)
-    this.videos = [];
-    let videoApi = this.youTubeService.getVideosForChanel();
-    videoApi.subscribe(res => {
-      this.token = res;
-    });
-    videoApi
-      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe(lista => {
-        for (let element of lista["items"]) {
-          this.videos.push(element)
-        }
-
-      });
   }
   onScroll(token) {
     let videoApi = this.youTubeService.getVideosByPage(token);
@@ -56,14 +44,29 @@ export class ResultsComponent implements OnInit {
   }
   onClick(id) {
     this.parentId = id;
-    this.data.getDetails();
+    this.data.setData("Hi I am new");
     // this._route.navigate(['/player'],{
     //   queryParams: {'id' : this.parentId}
     // })
+    // this.data.changeMessage("Hello from Sibling")
     let url =this._route.createUrlTree(['/player'], {
       queryParams: { 'id': this.parentId }
     });
     window.open(url.toString(),'_blank')
-    this.data.changeMessage("Hello from Sibling")
+    console.log(this.data.getData())
+  }
+  click(search){
+    this.videos = [];
+    let videoApi = this.youTubeService.getVideosForChanel(search);
+    videoApi.subscribe(res => {
+      this.token = res;
+    });
+    videoApi
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(lista => {
+        for (let element of lista["items"]) {
+          this.videos.push(element)
+        }
+      });
   }
 }

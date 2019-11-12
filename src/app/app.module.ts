@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import {MatCardModule} from '@angular/material/card';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { DataService } from './data.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     FlexLayoutModule,
     InfiniteScrollModule
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

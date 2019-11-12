@@ -6,9 +6,9 @@ import { ResultsComponent } from './results/results.component';
 
 const routes: Routes = [
   { path: 'player', component: TrackComponent },
-  {
-    path: 'player?id=', redirectTo: '/player'  },
-  { path: 'results', component: ResultsComponent }
+  { path: 'player?id=', redirectTo: '/player'  },
+  { path: 'results', component: ResultsComponent },
+  {path: '', redirectTo:'/results', pathMatch:'full'}
 ];
 
 @NgModule({
